@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MatcherLoper</string>
     <string name="title_activity_match">MainActivity</string>
-    <string name="title_participation">Home</string>
-    <string name="title_matching_list">Dashboard</string>
-    <string name="title_my_info">Notifications</string>
+    <string name="title_participation">참여</string>
+    <string name="title_matching_list">매칭 목록</string>
+    <string name="title_my_info">내 정보</string>
 </resources>
