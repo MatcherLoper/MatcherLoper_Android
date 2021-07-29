@@ -1,4 +1,4 @@
-package com.matchloper
+package com.matchloper.view
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.matchloper.R
 
 class MatchActivity : AppCompatActivity() {
 
@@ -16,11 +17,12 @@ class MatchActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_participation, R.id.navigation_matching_list, R.id.navigation_my_info
+                R.id.navigation_participation,
+                R.id.navigation_matching_list,
+                R.id.navigation_my_info
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
