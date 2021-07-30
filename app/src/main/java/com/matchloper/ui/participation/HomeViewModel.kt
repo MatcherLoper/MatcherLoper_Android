@@ -18,8 +18,25 @@ class HomeViewModel : ViewModel() {
     val count = MutableLiveData<String>()
 
     fun addPositionInfo() {
+
         if(position.value != "" && count.value != "" && count.value!!.toInt() > 0) {
-            positionData.add(PositionInfoData(position.value.toString(), count.value!!.toInt()))
+
+            if(positionData.find {
+                it.position == position.value
+            }?.count != null) {
+
+                positionData.add(PositionInfoData(position.value.toString(),
+                    positionData.find { it.position == position.value }!!.count + count.value!!.toInt()))
+
+                positionData.remove(positionData.find {
+                    it.position == position.value
+                })
+            }
+            else {
+                positionData.add(PositionInfoData(position.value.toString(), count.value!!.toInt()))
+            }
+
+
             position.value = ""
             count.value = ""
         }

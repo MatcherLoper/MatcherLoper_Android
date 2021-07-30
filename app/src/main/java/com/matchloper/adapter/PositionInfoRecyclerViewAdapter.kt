@@ -28,6 +28,9 @@ class PositionInfoRecyclerViewAdapter : RecyclerView.Adapter<PositionInfoRecycle
     inner class ViewHolder(private val binding : PositionInfoLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PositionInfoData) {
             binding.positionInfo = item
+            binding.removeButton.setOnClickListener {
+                items.remove(item)
+            }
         }
     }
 }
