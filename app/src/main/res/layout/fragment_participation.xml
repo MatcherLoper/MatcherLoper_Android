@@ -14,13 +14,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".ui.participation.ParticipationFragment">
 
         <LinearLayout
             android:background="@drawable/round_corner"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
@@ -259,17 +259,23 @@
             android:orientation="horizontal">
 
             <Button
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#FFA7BAE6"
                 matchingOpen="@{participationViewModel.id}"
                 android:layout_weight="1"
+                android:layout_marginEnd="5dp"
                 android:text="매칭 오픈"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="150dp"/>
 
             <Button
+                android:layout_marginStart="5dp"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#FFA7BAE6"
                 android:layout_weight="1"
                 android:text="랜덤 매칭"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="150dp"/>
 
         </LinearLayout>
 
