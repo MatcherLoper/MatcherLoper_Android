@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import com.matchloper.data.PositionInfoData
+import com.matchloper.data.RoomPosition
 import com.matchloper.databinding.PositionInfoLayoutBinding
 
 class PositionInfoRecyclerViewAdapter : RecyclerView.Adapter<PositionInfoRecyclerViewAdapter.ViewHolder>() {
 
-    var items = ObservableArrayList<PositionInfoData> ()
+    var items = ObservableArrayList<RoomPosition> ()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,7 +27,7 @@ class PositionInfoRecyclerViewAdapter : RecyclerView.Adapter<PositionInfoRecycle
     }
 
     inner class ViewHolder(private val binding : PositionInfoLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PositionInfoData) {
+        fun bind(item: RoomPosition) {
             binding.positionInfo = item
             binding.removeButton.setOnClickListener {
                 items.remove(item)
