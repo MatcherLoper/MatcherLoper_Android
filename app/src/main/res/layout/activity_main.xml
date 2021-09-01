@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    setSignUp="@{viewModel.userId}"
                     android:text="회원가입"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
