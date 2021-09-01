@@ -12,7 +12,7 @@ import com.matchloper.databinding.FragmentParticipationBinding
 
 class ParticipationFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var participationViewModel: ParticipationViewModel
     private lateinit var binding: FragmentParticipationBinding
 
     override fun onCreateView(
@@ -21,11 +21,13 @@ class ParticipationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        homeViewModel = ViewModelProvider(this.requireActivity()).get(HomeViewModel::class.java)
+        participationViewModel = ViewModelProvider(this.requireActivity()).get(ParticipationViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_participation, container, false)
         binding.lifecycleOwner = this
-        binding.participationViewModel = homeViewModel
+        binding.participationViewModel = participationViewModel
+
+        participationViewModel.getEntry()
 
         return binding.root
     }

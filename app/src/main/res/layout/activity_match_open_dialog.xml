@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.matchloper.ui.participation.HomeViewModel" />
+            type="com.matchloper.ui.participation.ParticipationViewModel" />
 
     </data>
 
@@ -87,7 +87,6 @@
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/round_corner"
-                        android:inputType="none"
                         android:paddingStart="5dp"
                         android:textSize="20sp" />
 
@@ -138,6 +137,31 @@
             </ScrollView>
 
             <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:background="@drawable/round_corner"
+                    android:textSize="20sp"
+                    android:text="오프라인 가능 지역"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <Spinner
+                    android:background="@drawable/round_corner"
+                    android:textSize="20sp"
+                    tools:setOnItemSelectedListener="@{viewModel.areaSpinnerClick}"
+                    android:layout_weight="1"
+                    android:entries="@array/area_array"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"
@@ -147,6 +171,10 @@
                 android:orientation="horizontal">
 
                 <Button
+                    name="@{viewModel.teamProjectName}"
+                    possibleOfflineArea="@{viewModel.area}"
+                    roomPositionList="@{viewModel.positionData}"
+                    userId="@{viewModel.id}"
                     android:background="@drawable/round_corner"
                     android:textSize="18sp"
                     android:textColor="#FEFEFE"
