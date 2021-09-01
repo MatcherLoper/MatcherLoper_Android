@@ -26,6 +26,8 @@ class MatchingListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = matchingListViewModel
 
+        matchingListViewModel.getRoomList()
+
         return binding.root
     }
 }
