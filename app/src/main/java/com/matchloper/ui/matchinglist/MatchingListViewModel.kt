@@ -5,9 +5,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.matchloper.data.FindRoomOneResponseData
-import com.matchloper.data.FindRoomResponseData
-import com.matchloper.data.ProjectStateData
+import com.matchloper.data.*
 import com.matchloper.network.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +17,8 @@ class MatchingListViewModel : ViewModel() {
 
     val projectState = ObservableArrayList<ProjectStateData>()
     val currentRoomId = MutableLiveData<Int>()
+    val userInfoData = ObservableArrayList<UserInfo>()
+    val currentProjectInfo = MutableLiveData<RoomInfoData>()
 
 
     fun getRoomList() {
@@ -45,6 +45,7 @@ class MatchingListViewModel : ViewModel() {
     }
 
     fun getCurrentProjectInfo() {
+        userInfoData.clear()
 
         retrofitBuilder.networkService.getRoom(currentRoomId.value!!.toInt()).enqueue(object : Callback<FindRoomOneResponseData> {
             override fun onFailure(call: Call<FindRoomOneResponseData>, t: Throwable) {
@@ -57,6 +58,11 @@ class MatchingListViewModel : ViewModel() {
             ) {
                 val res = response.body()
                 Log.e("test",res.toString())
+                currentProjectInfo.value = res?.data
+
+                repeat(res?.data?.users!!.size) {
+                    userInfoData.add(res.data.users[it])
+                }
             }
         })
     }

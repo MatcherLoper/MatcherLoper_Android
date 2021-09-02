@@ -73,7 +73,7 @@ class ParticipationViewModel : ViewModel() {
                 "백엔드" -> "BACKEND"
                 "프론트엔드" -> "FRONTEND"
                 "안드로이드" -> "ANDROID"
-                "iOS" -> "iOS"
+                "iOS" -> "IOS"
                 else -> ""
             }
         }

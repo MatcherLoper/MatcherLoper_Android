@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.navigation.findNavController
@@ -188,4 +189,46 @@ object DataBindingUtils {
         }
     }
 
+    @BindingAdapter("roomId", "createdUserId")
+    @JvmStatic
+    fun delete(button: Button, roomId : Int, createdUserId : Int) {
+        if(SingleTon.prefs.userId == createdUserId) {
+            button.isClickable = true
+            button.setOnClickListener {
+                RetrofitBuilder.networkService.deleteRoom(roomId).enqueue(object : Callback<DefaultResponseData> {
+                    override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<DefaultResponseData>,
+                        response: Response<DefaultResponseData>
+                    ) {
+                        val res = response.body()
+                        Log.e("res",res.toString())
+                    }
+                })
+            }
+        } else button.isClickable = false
+    }
+
+    @BindingAdapter("leaveRoom")
+    @JvmStatic
+    fun leave(button: Button, roomId : Int) {
+        button.setOnClickListener {
+            RetrofitBuilder.networkService.leaveRoom(roomId,SingleTon.prefs.userId).enqueue(object : Callback<DefaultResponseData> {
+                override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<DefaultResponseData>,
+                    response: Response<DefaultResponseData>
+                ) {
+                    val res = response.body()
+                    Log.e("res",res.toString())
+                }
+            })
+        }
+    }
 }
