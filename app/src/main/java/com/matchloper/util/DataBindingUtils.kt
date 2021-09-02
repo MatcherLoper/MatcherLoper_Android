@@ -14,6 +14,7 @@ import com.matchloper.R
 import com.matchloper.SingleTon
 import com.matchloper.adapter.PositionInfoRecyclerViewAdapter
 import com.matchloper.adapter.ProjectRecyclerViewAdapter
+import com.matchloper.adapter.TeamMateRecyclerViewAdapter
 import com.matchloper.data.*
 import com.matchloper.network.RetrofitBuilder
 import com.matchloper.signUp.SignUpActivity
@@ -137,10 +138,24 @@ object DataBindingUtils {
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
+    @BindingAdapter("teamMate")
+    @JvmStatic
+    fun bindTeamMate(recyclerView: RecyclerView, items: ObservableArrayList<UserInfo>) {
+        if(recyclerView.adapter == null) {
+            val lm = LinearLayoutManager(recyclerView.context)
+            val adapter = TeamMateRecyclerViewAdapter()
+            recyclerView.layoutManager = lm
+            recyclerView.adapter = adapter
+        }
+        (recyclerView.adapter as TeamMateRecyclerViewAdapter).items = items
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
     @BindingAdapter("name", "possibleOfflineArea", "roomPositionList", "userId")
     @JvmStatic
     fun createRoom(button: Button, name : String?, possibleOfflineArea : String?, roomPositionList : ObservableArrayList<RoomPosition>, userId : Int) {
         button.setOnClickListener {
+            Log.e("room",roomPositionList.toString())
             val requestBody = RoomCreateRequestData(name.toString(),"서울",roomPositionList,userId)
             RetrofitBuilder.networkService.createRoom(requestBody).enqueue(object : Callback<DefaultResponseData> {
                 override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
