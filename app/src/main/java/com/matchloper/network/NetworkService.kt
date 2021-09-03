@@ -41,7 +41,7 @@ interface NetworkService {
     @GET("/api/v1/rooms/open")
     fun getOpenedRoom() : Call<FindRoomResponseData>
 
-    @PUT("/api/v1/rooms/{roomsId}/start")
+    @PUT("/api/v1/rooms/{roomId}/start")
     fun startRoom(
         @Path("roomId") roomId: Int
     ) : Call<DefaultResponseData>

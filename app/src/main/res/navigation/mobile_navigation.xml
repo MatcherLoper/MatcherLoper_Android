@@ -39,7 +39,9 @@
         android:label="프로젝트 정보"
         tools:layout="@layout/fragment_current_project">
 
-
+        <action
+            android:id="@+id/action_navigation_current_project_to_navigation_matching_list"
+            app:destination="@id/navigation_matching_list" />
     </fragment>
 
 </navigation>

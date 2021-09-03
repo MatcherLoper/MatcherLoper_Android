@@ -5,7 +5,7 @@ data class FindRoomResponseData(
     val message : String
 )
 data class RoomInfoData(
-    val createdUserId : Int,
+    val createUserId : Int,
     val name : String,
     val possibleOfflineArea : String,
     val requiredUserNumber : Int,

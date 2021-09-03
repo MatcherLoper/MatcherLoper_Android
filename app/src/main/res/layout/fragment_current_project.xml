@@ -233,21 +233,24 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    leaveRoom="@{viewModel.currentProjectInfo.roomId}"
+                    leaveRoomId="@{viewModel.currentProjectInfo.roomId}"
+                    leaveCreateUserId="@{viewModel.currentProjectInfo.createUserId}"
                     android:text="떠나기"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    roomStatus="@{viewModel.currentProjectInfo.status}"
+                    startRoomId="@{viewModel.currentProjectInfo.roomId}"
                     android:text="시작하기"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
-                    roomId="@{viewModel.currentProjectInfo.roomId}"
-                    createdUserId="@{viewModel.currentProjectInfo.createdUserId}"
+                    deleteRoomId="@{viewModel.currentProjectInfo.roomId}"
+                    deleteCreateUserId="@{viewModel.currentProjectInfo.createUserId}"
                     android:text="삭제하기"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
