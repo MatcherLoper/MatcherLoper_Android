@@ -67,4 +67,9 @@ interface NetworkService {
     fun findParticipantJoinedRoom(
         @Path ("roomId") roomId: Int
     ) : Call<FindParticipantData>
+
+    @PUT("/api/v1/rooms/{roomId}/close")
+    fun closeRoom(
+        @Path ("roomId") roomId : Int
+    ) : Call<DefaultResponseData>
 }

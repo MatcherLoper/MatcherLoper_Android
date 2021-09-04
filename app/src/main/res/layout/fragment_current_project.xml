@@ -249,6 +249,14 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    closeRoomId="@{viewModel.currentProjectInfo.roomId}"
+                    status="@{viewModel.currentProjectInfo.status}"
+                    android:text="방 닫기"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <Button
                     deleteRoomId="@{viewModel.currentProjectInfo.roomId}"
                     deleteCreateUserId="@{viewModel.currentProjectInfo.createUserId}"
                     android:text="삭제하기"

@@ -15,7 +15,6 @@ import retrofit2.Response
 
 object RoomBindingAdapter {
 
-
     @BindingAdapter("deleteRoomId", "deleteCreateUserId")
     @JvmStatic
     fun delete(button: Button, deleteRoomId : Int, deleteCreateUserId : Int) {
@@ -113,5 +112,33 @@ object RoomBindingAdapter {
             "START" -> button.isEnabled = false
             "FULL" -> button.isEnabled = false
         }
+    }
+
+    @BindingAdapter("closeRoomId","status")
+    @JvmStatic
+    fun close(button: Button, closeRoomId: Int, status : String?) {
+        if(status == "OPEN") {
+            button.setOnClickListener {
+                RetrofitBuilder.networkService.closeRoom(closeRoomId).enqueue(object : Callback<DefaultResponseData>{
+                    override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<DefaultResponseData>,
+                        response: Response<DefaultResponseData>
+                    ) {
+                        val res = response.body()
+                        Log.e("resss",response.errorBody()?.string())
+                        Log.e("res",res.toString())
+                        if(res?.message == null) {
+                            Toast.makeText(button.context,"방을 닫았습니다",Toast.LENGTH_SHORT).show()
+                            button.findNavController().navigate(R.id.action_navigation_current_project_to_navigation_matching_list)
+                        }
+                    }
+                })
+            }
+        }
+        else button.isEnabled = false
     }
 }
