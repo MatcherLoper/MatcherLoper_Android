@@ -129,7 +129,6 @@ object RoomBindingAdapter {
                         response: Response<DefaultResponseData>
                     ) {
                         val res = response.body()
-                        Log.e("resss",response.errorBody()?.string())
                         Log.e("res",res.toString())
                         if(res?.message == null) {
                             Toast.makeText(button.context,"방을 닫았습니다",Toast.LENGTH_SHORT).show()

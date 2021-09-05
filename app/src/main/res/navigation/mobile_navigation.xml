@@ -44,4 +44,15 @@
             app:destination="@id/navigation_matching_list" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_matching_dialog"
+        android:name="com.matchloper.view.MatchingDialogFragment"
+        android:label="포지션 선택"
+        tools:layout="@layout/fragment_matching_dialog">
+
+        <action
+            android:id="@+id/action_navigation_matching_dialog_to_navigation_participation"
+            app:destination="@id/navigation_participation" />
+    </fragment>
+
 </navigation>

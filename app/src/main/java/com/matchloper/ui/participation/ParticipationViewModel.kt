@@ -69,7 +69,7 @@ class ParticipationViewModel : ViewModel() {
     val clickListener = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-            if(p0?.getItemAtPosition(p2).toString() != "포지션을 선택하세요") position.value = when (p0?.getItemAtPosition(p2).toString()) {
+            if(p0?.getItemAtPosition(p2).toString() != "포지션 선택") position.value = when (p0?.getItemAtPosition(p2).toString()) {
                 "백엔드" -> "BACKEND"
                 "프론트엔드" -> "FRONTEND"
                 "안드로이드" -> "ANDROID"

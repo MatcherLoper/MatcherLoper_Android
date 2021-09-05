@@ -6,7 +6,7 @@
     <string name="title_my_info">내 정보</string>
 
     <string-array name="position_array">
-        <item>포지션을 선택하세요</item>
+        <item>포지션 선택</item>
         <item>백엔드</item>
         <item>프론트엔드</item>
         <item>안드로이드</item>
@@ -30,5 +30,4 @@
         <item>제주도</item>
 
     </string-array>
-
 </resources>
