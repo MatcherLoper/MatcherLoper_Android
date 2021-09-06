@@ -63,58 +63,27 @@
                     <TextView
                         android:textStyle="bold"
                         android:text="백엔드"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:text=""
+                        android:gravity="end"
+                        android:text="@{String.valueOf(viewModel.currentBackEndPosition)}"
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
                     <TextView
+                        android:text=" / "
                         android:textStyle="bold"
-                        android:text="프론트엔드"
-                        android:layout_weight="3"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:textStyle="bold"
-                        android:text="안드로이드"
-                        android:layout_weight="3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
+                        android:gravity="start"
+                        android:text="@{String.valueOf(viewModel.wholeBackEndPosition)}"
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -133,12 +102,108 @@
 
                     <TextView
                         android:textStyle="bold"
-                        android:text="iOS"
-                        android:layout_weight="3"
+                        android:text="프론트엔드"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:gravity="end"
+                        android:text="@{String.valueOf(viewModel.currentFrontEndPosition)}"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" / "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="start"
+                        android:text="@{String.valueOf(viewModel.wholeFrontEndPosition)}"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="안드로이드"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="end"
+                        android:text="@{String.valueOf(viewModel.currentAndroidPosition)}"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" / "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="start"
+                        android:text="@{String.valueOf(viewModel.wholeAndroidPosition)}"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="IOS"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="end"
+                        android:text="@{String.valueOf(viewModel.currentIosPosition)}"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" / "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="start"
+                        android:text="@{String.valueOf(viewModel.wholeIosPosition)}"
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -158,16 +223,31 @@
                     <TextView
                         android:textStyle="bold"
                         android:text="디자인"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:gravity="end"
+                        android:text="0"
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
+                    <TextView
+                        android:text=" / "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="start"
+                        android:text="0"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,11 +262,27 @@
                     <TextView
                         android:textStyle="bold"
                         android:text="기획"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:gravity="end"
+                        android:text="0"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" / "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:gravity="start"
+                        android:text="0"
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_width="match_parent"

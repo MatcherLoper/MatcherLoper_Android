@@ -2,7 +2,6 @@ package com.matchloper.ui.matchinglist
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.matchloper.data.*
@@ -19,6 +18,16 @@ class MatchingListViewModel : ViewModel() {
     val currentRoomId = MutableLiveData<Int>()
     val userInfoData = ObservableArrayList<UserInfo>()
     val currentProjectInfo = MutableLiveData<RoomInfoData>()
+
+    val currentBackEndPosition = MutableLiveData<Int>()
+    val currentFrontEndPosition = MutableLiveData<Int>()
+    val currentAndroidPosition = MutableLiveData<Int>()
+    val currentIosPosition = MutableLiveData<Int>()
+
+    val wholeBackEndPosition = MutableLiveData<Int>()
+    val wholeFrontEndPosition = MutableLiveData<Int>()
+    val wholeAndroidPosition = MutableLiveData<Int>()
+    val wholeIosPosition = MutableLiveData<Int>()
 
 
     fun getRoomList() {
@@ -47,6 +56,16 @@ class MatchingListViewModel : ViewModel() {
     fun getCurrentProjectInfo() {
         userInfoData.clear()
 
+        currentBackEndPosition.value = 0
+        currentFrontEndPosition.value = 0
+        currentAndroidPosition.value = 0
+        currentIosPosition.value = 0
+
+        wholeBackEndPosition.value = 0
+        wholeFrontEndPosition.value = 0
+        wholeAndroidPosition.value = 0
+        wholeIosPosition.value = 0
+
         retrofitBuilder.networkService.getRoom(currentRoomId.value!!.toInt()).enqueue(object : Callback<FindRoomOneResponseData> {
             override fun onFailure(call: Call<FindRoomOneResponseData>, t: Throwable) {
 
@@ -56,12 +75,28 @@ class MatchingListViewModel : ViewModel() {
                 call: Call<FindRoomOneResponseData>,
                 response: Response<FindRoomOneResponseData>
             ) {
+
                 val res = response.body()
-                Log.e("test",res.toString())
                 currentProjectInfo.value = res?.data
 
-                repeat(res?.data?.users!!.size) {
-                    userInfoData.add(res.data.users[it])
+                res?.data?.roomPositions?.forEach { roomPosition ->
+                    when(roomPosition.position) {
+                        "BACKEND" -> wholeBackEndPosition.value = roomPosition.count
+                        "FRONTEND" -> wholeFrontEndPosition.value = roomPosition.count
+                        "ANDROID" -> wholeAndroidPosition.value = roomPosition.count
+                        "IOS" -> wholeIosPosition.value = roomPosition.count
+                    }
+                }
+
+                res?.data?.users?.forEach { userInfo ->
+                    userInfoData.add(userInfo)
+
+                    when(userInfo.userPositions[0].type) {
+                        "BACKEND" -> currentBackEndPosition.value = currentBackEndPosition.value!! + 1
+                        "FRONTEND" -> currentFrontEndPosition.value = currentFrontEndPosition.value!! + 1
+                        "ANDROID" -> currentAndroidPosition.value = currentAndroidPosition.value!! + 1
+                        "IOS" -> currentIosPosition.value = currentIosPosition.value!! + 1
+                    }
                 }
             }
         })
