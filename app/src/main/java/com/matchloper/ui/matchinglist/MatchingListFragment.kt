@@ -20,7 +20,7 @@ class MatchingListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         matchingListViewModel = ViewModelProvider(this.requireActivity()).get(MatchingListViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_matching_list,container,false)
         binding.lifecycleOwner = this

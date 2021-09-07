@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.matchinglist.CurrentProjectFragment">
@@ -26,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -33,6 +35,35 @@
                 android:text="@{viewModel.currentProjectInfo.name}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:background="@drawable/round_corner"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="오프라인 가능 지역"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="@{viewModel.currentProjectInfo.possibleOfflineArea}"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:paddingTop="10dp"

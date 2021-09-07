@@ -35,7 +35,7 @@ object MatchingBindingAdapter {
     fun createRoom(button: Button, name : String?, possibleOfflineArea : String?, roomPositionList : ObservableArrayList<RoomPosition>, userId : Int) {
         button.setOnClickListener {
             Log.e("room",roomPositionList.toString())
-            val requestBody = RoomCreateRequestData(name.toString(),"서울",roomPositionList,userId)
+            val requestBody = RoomCreateRequestData(name.toString(),possibleOfflineArea.toString(),roomPositionList,userId)
             RetrofitBuilder.networkService.createRoom(requestBody).enqueue(object :
                 Callback<DefaultResponseData> {
                 override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {

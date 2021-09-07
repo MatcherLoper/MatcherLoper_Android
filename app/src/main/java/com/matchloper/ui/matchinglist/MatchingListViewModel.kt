@@ -1,9 +1,11 @@
 package com.matchloper.ui.matchinglist
 
 import android.util.Log
+import android.widget.RadioButton
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.matchloper.R
 import com.matchloper.data.*
 import com.matchloper.network.RetrofitBuilder
 import retrofit2.Call
@@ -46,8 +48,44 @@ class MatchingListViewModel : ViewModel() {
                 Log.e("res",res.toString())
 
                 val data = res?.data!!
-                repeat(data.size) {
-                    projectState.add(ProjectStateData(data[it].name,data[it].status,data[it].roomId))
+                data.forEachIndexed { index, roomInfoData ->
+                    when(roomInfoData.status) {
+                        "FULL" -> {
+                            projectState.add(ProjectStateData(roomInfoData.name,roomInfoData.status,roomInfoData.roomId))
+                        }
+                        "OPEN" -> {
+                            projectState.add(ProjectStateData(roomInfoData.name,"매칭중",roomInfoData.roomId))
+                        }
+                        "CLOSED" -> {
+                            projectState.add(ProjectStateData(roomInfoData.name,"매칭완료",roomInfoData.roomId))
+                        }
+                        "START" -> {
+                            projectState.add(ProjectStateData(roomInfoData.name,roomInfoData.status,roomInfoData.roomId))
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    fun getOpenedRoom() {
+        projectState.clear()
+
+        retrofitBuilder.networkService.getOpenedRoom().enqueue(object : Callback<FindRoomResponseData> {
+            override fun onFailure(call: Call<FindRoomResponseData>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<FindRoomResponseData>,
+                response: Response<FindRoomResponseData>
+            ) {
+                val res = response.body()
+                Log.e("res",res.toString())
+
+                val data = res?.data!!
+                data.forEachIndexed { index, roomInfoData ->
+                    projectState.add(ProjectStateData(roomInfoData.name,"매칭중",roomInfoData.roomId))
                 }
             }
         })
@@ -100,5 +138,19 @@ class MatchingListViewModel : ViewModel() {
                 }
             }
         })
+    }
+
+    fun onRadioButtonClicked(radioButton: RadioButton) {
+        val checked = radioButton.isChecked
+
+        when(radioButton.id) {
+            R.id.wholeRoom -> {
+                if(checked) getRoomList()
+            }
+
+            R.id.openedRoom -> {
+                if(checked) getOpenedRoom()
+            }
+        }
     }
 }
