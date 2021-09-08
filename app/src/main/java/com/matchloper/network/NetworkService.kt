@@ -72,4 +72,9 @@ interface NetworkService {
     fun closeRoom(
         @Path ("roomId") roomId : Int
     ) : Call<DefaultResponseData>
+
+    @GET("/api/v1/users/{userId}")
+    fun findUser(
+        @Path ("userId") userId : Int
+    ) : Call<UserInfoResponseData>
 }
