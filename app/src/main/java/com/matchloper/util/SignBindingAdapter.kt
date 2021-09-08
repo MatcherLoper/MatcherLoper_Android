@@ -36,16 +36,21 @@ object SignBindingAdapter {
                     call: Call<SignInResponseData>,
                     response: Response<SignInResponseData>
                 ) {
+                    val res = response.body()
+                    Log.e("res",res.toString())
 
-                    if(response.isSuccessful) {
-                        Log.e("res",response.body().toString())
-                        SingleTon.prefs.userId = response.body()!!.data.id
-                        SingleTon.prefs.userToken = response.body()!!.data.authenticationToken
+                    when {
+                        res?.message.toString().contains("존재하지 않는 사용자입니다") -> Toast.makeText(button.context,"존재하지 않는 사용자입니다",Toast.LENGTH_SHORT).show()
+                        res?.message == "Password is not matched!" -> Toast.makeText(button.context,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show()
+                        res?.message == null -> {
+                            SingleTon.prefs.userId = res?.data!!.id
+                            SingleTon.prefs.userToken = res.data.authenticationToken
 
-                        val intent = Intent(it.context, MatchActivity::class.java)
-                        it.context.startActivity(intent)
-
+                            val intent = Intent(it.context, MatchActivity::class.java)
+                            it.context.startActivity(intent)
+                        }
                     }
+
                 }
             })
         }
@@ -66,7 +71,7 @@ object SignBindingAdapter {
             RetrofitBuilder.networkService.signUp(requestBody).enqueue(object :
                 Callback<SignUpResponseData> {
                 override fun onFailure(call: Call<SignUpResponseData>, t: Throwable) {
-                    Log.e("error",t.message)
+
                 }
 
                 override fun onResponse(

@@ -77,4 +77,9 @@ interface NetworkService {
     fun findUser(
         @Path ("userId") userId : Int
     ) : Call<UserInfoResponseData>
+
+    @DELETE("/api/v1/users/{userId}")
+    fun deleteUser(
+        @Path ("userId") userId: Int
+    ) : Call<DefaultResponseData>
 }
