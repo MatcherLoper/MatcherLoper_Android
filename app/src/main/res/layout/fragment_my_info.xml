@@ -153,6 +153,7 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    withdrawal="@{viewModel.myInfoData.userId}"
                     android:text="회원 탈퇴"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
