@@ -1,5 +1,10 @@
 package com.matchloper.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
+
+@Parcelize
 data class UserInfoData(
     val userId : Int,
     val email : String,
@@ -7,6 +12,6 @@ data class UserInfoData(
     val name : String,
     val phoneNumber : String,
     val introduction : String,
-    val userPosition : List<UserPositionDto>,
-    val skills : List<SkillDto>
-)
+    val userPosition : @RawValue List<UserPositionDto>,
+    val skills : @RawValue List<SkillDto>
+) : Parcelable

@@ -16,7 +16,6 @@ class MyInfoViewModel : ViewModel() {
     val myInfoData = MutableLiveData<UserInfoData>()
 
 
-
     fun getMyInfo() {
         retrofitBuilder.networkService.findUser(SingleTon.prefs.userId).enqueue(object : Callback<UserInfoResponseData> {
 
@@ -34,4 +33,5 @@ class MyInfoViewModel : ViewModel() {
             }
         })
     }
+
 }
