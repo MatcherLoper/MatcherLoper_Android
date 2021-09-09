@@ -2,8 +2,12 @@ package com.matchloper.util
 
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
+import com.matchloper.R
 import com.matchloper.data.DefaultResponseData
+import com.matchloper.data.UserInfoData
 import com.matchloper.network.RetrofitBuilder
 import com.matchloper.view.MatchActivity
 import retrofit2.Call
@@ -37,6 +41,22 @@ object UserInfoBindingAdapter {
                     }
                 }
             })
+        }
+    }
+
+    @BindingAdapter("update")
+    @JvmStatic
+    fun infoUpdate(button: Button, userInfo : UserInfoData?) {
+        button.setOnClickListener {
+            button.findNavController().navigate(R.id.action_navigation_my_info_to_navigation_user_info_update, bundleOf("userInfo" to userInfo))
+        }
+    }
+
+    @BindingAdapter("cancelUpdate")
+    @JvmStatic
+    fun cancelUpdate(button: Button, userId: Int) {
+        button.setOnClickListener {
+            button.findNavController().navigate(R.id.action_navigation_user_info_update_to_navigation_my_info)
         }
     }
 }

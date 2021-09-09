@@ -1,13 +1,20 @@
 package com.matchloper.util
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.navigation.findNavController
+import com.google.android.gms.tasks.OnSuccessListener
+import com.matchloper.FirebaseMessaging
 import com.matchloper.R
 import com.matchloper.SingleTon
 import com.matchloper.data.*
@@ -72,7 +79,6 @@ object MatchingBindingAdapter {
     @JvmStatic
     fun join(button: Button, position : String?) {
         if(position != null && position != "") {
-
             val requestBody = RequestPositionData(position)
 
             button.setOnClickListener {
@@ -81,6 +87,7 @@ object MatchingBindingAdapter {
 
                     }
 
+                    @RequiresApi(Build.VERSION_CODES.O)
                     override fun onResponse(
                         call: Call<DefaultResponseData>,
                         response: Response<DefaultResponseData>
@@ -89,23 +96,27 @@ object MatchingBindingAdapter {
                         Log.e("res",res.toString())
                         when(res?.message) {
                             null -> button.findNavController().navigate(R.id.action_navigation_matching_dialog_to_navigation_participation)
-                            "There are no rooms available to participate" -> Toast.makeText(button.context,"참여할 수 있는 방이 없습니다",Toast.LENGTH_SHORT).show()
+                            "There are no rooms available to participate" -> {
+                                Toast.makeText(button.context,"참여할 수 있는 방이 없습니다",Toast.LENGTH_SHORT).show()
+                                val notificationChannel = NotificationChannel("10000","test",NotificationManager.IMPORTANCE_DEFAULT)
+                                val notificationManager = button.context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+                                notificationChannel.description = "방 상태 변경"
+                                notificationChannel.enableVibration(true)
+
+                                notificationManager.createNotificationChannel(notificationChannel)
+
+                                com.google.firebase.messaging.FirebaseMessaging.getInstance().subscribeToTopic("matching").addOnSuccessListener(
+                                    OnSuccessListener {
+                                        Toast.makeText(button.context,"해당 포지션을 구독했습니다.",Toast.LENGTH_SHORT).show()
+                                    })
+                            }
                             "User can't join room. user role: OWNER" -> Toast.makeText(button.context,"방장은 다른 방에 참여할 수 없습니다.",Toast.LENGTH_SHORT).show()
                             "User can't join room. user role: MATCHING" -> Toast.makeText(button.context,"이미 매칭에 참여하고 있습니다.",Toast.LENGTH_SHORT).show()
                         }
                     }
                 })
             }
-        }
-    }
-
-    @BindingAdapter("cancel")
-    @JvmStatic
-    fun cancel(button: Button, position: String?) {
-        val matchingDialogFragment = MatchingDialogFragment()
-        button.setOnClickListener {
-
-//            button.findNavController().navigate(R.id.action_navigation_matching_dialog_to_navigation_participation)
         }
     }
 }

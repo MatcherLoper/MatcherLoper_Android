@@ -31,7 +31,18 @@
         android:id="@+id/navigation_my_info"
         android:name="com.matchloper.ui.myinfo.MyInfoFragment"
         android:label="@string/title_my_info"
-        tools:layout="@layout/fragment_my_info" />
+        tools:layout="@layout/fragment_my_info" >
+
+        <action
+            android:id="@+id/action_navigation_my_info_to_navigation_user_info_update"
+            app:destination="@id/navigation_user_info_update">
+
+            <argument
+                android:name="userInfo"
+                app:argType="com.matchloper.data.UserInfoData"/>
+
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_current_project"
@@ -53,6 +64,17 @@
         <action
             android:id="@+id/action_navigation_matching_dialog_to_navigation_participation"
             app:destination="@id/navigation_participation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_user_info_update"
+        android:name="com.matchloper.ui.myinfo.UserInfoUpdateFragment"
+        android:label="정보 수정"
+        tools:layout="@layout/fragment_user_info_update">
+
+        <action
+            android:id="@+id/action_navigation_user_info_update_to_navigation_my_info"
+            app:destination="@id/navigation_my_info" />
     </fragment>
 
 </navigation>
