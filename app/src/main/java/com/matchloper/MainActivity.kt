@@ -1,5 +1,6 @@
 package com.matchloper
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var viewModel : MainViewModel
+    private lateinit var fcm : Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.viewModel = viewModel
 
+        fcm = Intent(applicationContext,com.matchloper.FirebaseMessaging::class.java)
+        startService(fcm)
     }
 
     private fun firebaseMessaging() {
