@@ -14,10 +14,12 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.navigation.findNavController
 import com.google.android.gms.tasks.OnSuccessListener
-import com.matchloper.FirebaseMessaging
 import com.matchloper.R
 import com.matchloper.SingleTon
-import com.matchloper.data.*
+import com.matchloper.data.DefaultResponseData
+import com.matchloper.data.RequestPositionData
+import com.matchloper.data.RoomCreateRequestData
+import com.matchloper.data.RoomPosition
 import com.matchloper.network.RetrofitBuilder
 import com.matchloper.view.MatchActivity
 import com.matchloper.view.MatchOpenDialogActivity
@@ -46,7 +48,7 @@ object MatchingBindingAdapter {
             RetrofitBuilder.networkService.createRoom(requestBody).enqueue(object :
                 Callback<DefaultResponseData> {
                 override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
-                    Log.e("error",t.message)
+
                 }
 
                 override fun onResponse(
@@ -54,13 +56,13 @@ object MatchingBindingAdapter {
                     response: Response<DefaultResponseData>
                 ) {
                     val res = response.body()
-                    Log.e("ress",response.raw().toString())
                     val message = res?.message
                     Log.e("res",res.toString())
-                    if(message == null) (it.context as Activity).finish()
-                    else if(message == "user already have another open room") Toast.makeText(button.context,
-                        "현재 아이디로 이미 개설된 방이 있습니다", Toast.LENGTH_SHORT).show()
-
+                    when(message) {
+                        null -> (it.context as Activity).finish()
+                        "user already have another open room" -> Toast.makeText(button.context,
+                            "현재 아이디로 이미 개설된 방이 있습니다", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
         }

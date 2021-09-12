@@ -16,6 +16,11 @@ class MatchingDialogFragment : DialogFragment() {
     private lateinit var binding : FragmentMatchingDialogBinding
     private lateinit var viewModel : ParticipationViewModel
 
+    interface NoticeDialogListener {
+        fun onDialogConfirmClick(dialog : DialogFragment)
+        fun onDialogCancelClick(dialog : DialogFragment)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +30,10 @@ class MatchingDialogFragment : DialogFragment() {
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this.requireActivity()).get(ParticipationViewModel::class.java)
         binding.viewModel = viewModel
+
+        binding.matchingCancel.setOnClickListener {
+            this.dismiss()
+        }
 
         return binding.root
     }

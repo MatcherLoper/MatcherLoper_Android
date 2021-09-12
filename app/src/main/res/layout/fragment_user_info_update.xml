@@ -43,7 +43,7 @@
                     android:text="주소" />
 
                 <EditText
-                    android:text=""
+                    android:text="@={viewModel.userAddress}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
-                    android:text=""
+                    android:text="@={viewModel.userDetailAddress}"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -83,32 +83,13 @@
                     android:text="이름" />
 
                 <EditText
-                    android:text="@{viewModel.myInfoData.name}"
+                    android:text="@={viewModel.userName}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="이메일" />
-
-                <EditText
-                    android:text="@{viewModel.myInfoData.email}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_margin="10dp"
@@ -124,7 +105,7 @@
                     android:text="비밀번호" />
 
                 <EditText
-                    android:text=""
+                    android:text="@={viewModel.userUpdatePw}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -146,7 +127,7 @@
                     android:text="핸드폰 번호" />
 
                 <EditText
-                    android:text="@{viewModel.myInfoData.phoneNumber}"
+                    android:text="@={viewModel.userPhoneNumber}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -166,6 +147,7 @@
                     android:layout_height="match_parent"/>
 
                 <Spinner
+                    tools:setOnItemSelectedListener="@{viewModel.positionSpinnerClick}"
                     android:gravity="center"
                     android:entries="@array/position_array"
                     android:textSize="20sp"
@@ -189,7 +171,7 @@
                     android:layout_height="wrap_content"/>
 
                 <EditText
-                    android:text="@{viewModel.myInfoData.skills.get(0).name}"
+                    android:text="@={viewModel.userSkillInfo}"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -202,7 +184,13 @@
                 android:layout_height="wrap_content">
 
                 <Button
-
+                    userName="@{viewModel.userName}"
+                    address="@{viewModel.userAddress}"
+                    detailAddress="@{viewModel.userDetailAddress}"
+                    userSignUpPw="@{viewModel.userUpdatePw}"
+                    userPhone="@{viewModel.userPhoneNumber}"
+                    userPosition="@{viewModel.userPosition}"
+                    userSkill="@{viewModel.userSkillInfo}"
                     android:text="확인"
                     android:layout_weight="1"
                     android:layout_width="match_parent"

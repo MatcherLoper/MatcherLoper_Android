@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.matchloper.data.AddressDto
 
 class MainViewModel : ViewModel() {
 
@@ -27,8 +26,15 @@ class MainViewModel : ViewModel() {
         }
 
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            if(p0?.getItemAtPosition(p2).toString() != "포지션을 선택하세요") userPosition.value = p0?.getItemAtPosition(p2).toString()
+            if (p0?.getItemAtPosition(p2).toString() != "포지션 선택") userPosition.value =
+                when (p0?.getItemAtPosition(p2).toString()) {
+                    "백엔드" -> "BACKEND"
+                    "프론트엔드" -> "FRONTEND"
+                    "안드로이드" -> "ANDROID"
+                    "iOS" -> "IOS"
+                    else -> ""
+                }
         }
-    }
 
+    }
 }

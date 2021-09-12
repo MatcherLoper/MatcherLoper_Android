@@ -68,7 +68,7 @@ class MatchingListViewModel : ViewModel() {
         })
     }
 
-    fun getOpenedRoom() {
+    private fun getOpenedRoom() {
         projectState.clear()
 
         retrofitBuilder.networkService.getOpenedRoom().enqueue(object : Callback<FindRoomResponseData> {

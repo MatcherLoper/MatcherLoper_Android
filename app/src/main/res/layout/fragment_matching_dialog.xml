@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
-                cancel="@{viewModel.position}"
+                android:id="@+id/matchingCancel"
                 android:text="취소"
                 android:layout_weight="1"
                 android:layout_width="match_parent"

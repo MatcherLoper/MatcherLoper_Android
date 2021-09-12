@@ -63,7 +63,7 @@ object SignBindingAdapter {
                userPhone : String?, userPosition : String?, userSkill : String?) {
         button.setOnClickListener {
             val skill = SkillDto(userSkill.toString())
-            val position = UserPositionDto("ANDROID")
+            val position = UserPositionDto(userPosition.toString())
             val requestBody = SignUpRequestData(
                 AddressDto(address.toString(),detailAddress.toString()),userEmail.toString(),"",userName.toString(),userSignUpPw.toString(),userPhone.toString(),
                 listOf(skill), listOf(position))

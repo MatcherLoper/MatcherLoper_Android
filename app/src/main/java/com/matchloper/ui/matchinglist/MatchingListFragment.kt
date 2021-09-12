@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.matchloper.R
 import com.matchloper.databinding.FragmentMatchingListBinding
 
@@ -21,6 +20,7 @@ class MatchingListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         matchingListViewModel = ViewModelProvider(this.requireActivity()).get(MatchingListViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_matching_list,container,false)
         binding.lifecycleOwner = this

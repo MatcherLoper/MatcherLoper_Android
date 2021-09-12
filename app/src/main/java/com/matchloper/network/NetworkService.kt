@@ -82,4 +82,10 @@ interface NetworkService {
     fun deleteUser(
         @Path ("userId") userId: Int
     ) : Call<DefaultResponseData>
+
+    @PUT("/api/v1/users/{userId}")
+    fun updateUser(
+        @Path ("userId") userId: Int,
+        @Body updateRequestBody : UserUpdateRequestData
+    ) : Call<DefaultResponseData>
 }
