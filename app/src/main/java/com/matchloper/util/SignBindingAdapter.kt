@@ -56,16 +56,16 @@ object SignBindingAdapter {
         }
     }
 
-    @BindingAdapter(value = ["address","detailAddress","userName","userEmail","userSignUpPw","userPhone"
+    @BindingAdapter(value = ["address","detailAddress","userName","userEmail","userSignUpPw","userPhone" , "userIntroduction"
         ,"userPosition","userSkill"],requireAll = true)
     @JvmStatic
-    fun signUp(button: Button, address : String?, detailAddress: String?, userName : String?, userEmail : String?, userSignUpPw : String?,
+    fun signUp(button: Button, address : String?, detailAddress: String?, userName : String?, userEmail : String?, userIntroduction : String?,userSignUpPw : String?,
                userPhone : String?, userPosition : String?, userSkill : String?) {
         button.setOnClickListener {
             val skill = SkillDto(userSkill.toString())
             val position = UserPositionDto(userPosition.toString())
             val requestBody = SignUpRequestData(
-                AddressDto(address.toString(),detailAddress.toString()),userEmail.toString(),"",userName.toString(),userSignUpPw.toString(),userPhone.toString(),
+                AddressDto(address.toString(),detailAddress.toString()),userEmail.toString(),userIntroduction.toString(),userName.toString(),userSignUpPw.toString(),userPhone.toString(),
                 listOf(skill), listOf(position))
 
             RetrofitBuilder.networkService.signUp(requestBody).enqueue(object :

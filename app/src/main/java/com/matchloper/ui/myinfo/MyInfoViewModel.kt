@@ -24,6 +24,7 @@ class MyInfoViewModel : ViewModel() {
     val userDetailAddress = MutableLiveData<String>()
     val userPosition = MutableLiveData<String>()
     val userSkillInfo = MutableLiveData<String>()
+    val userIntroduction = MutableLiveData<String>()
 
     fun getMyInfo() {
         retrofitBuilder.networkService.findUser(SingleTon.prefs.userId).enqueue(object : Callback<UserInfoResponseData> {

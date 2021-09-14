@@ -19,6 +19,7 @@ class MainViewModel : ViewModel() {
     val userDetailAddress = MutableLiveData<String>()
     val userPosition = MutableLiveData<String>()
     val userSkillInfo = MutableLiveData<String>()
+    val userIntroduction = MutableLiveData<String>()
 
     val positionSpinnerClick = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {

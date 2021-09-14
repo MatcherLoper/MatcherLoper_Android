@@ -61,17 +61,17 @@ object UserInfoBindingAdapter {
         }
     }
 
-    @BindingAdapter(value = ["address","detailAddress","userName","userSignUpPw","userPhone"
+    @BindingAdapter(value = ["address","detailAddress","userName","userSignUpPw","userPhone" , "userIntroduction"
         ,"userPosition","userSkill"],requireAll = true)
     @JvmStatic
-    fun infoUpdate(button: Button, address : String?, detailAddress: String?, userName : String?, userSignUpPw : String?,
+    fun infoUpdate(button: Button, address : String?, detailAddress: String?, userName : String?, userIntroduction : String? ,userSignUpPw : String?,
                    userPhone : String?, userPosition : String?, userSkill : String?) {
 
         button.setOnClickListener {
             val skill = SkillDto(userSkill.toString())
             val position = UserPositionDto(userPosition.toString())
             val requestBody = UserUpdateRequestData(
-                AddressDto(address.toString(),detailAddress.toString()),"",userName.toString(),userSignUpPw.toString(),userPhone.toString(),
+                AddressDto(address.toString(),detailAddress.toString()),userIntroduction.toString(),userName.toString(),userSignUpPw.toString(),userPhone.toString(),
                 listOf(skill), listOf(position))
 
             Log.e("test",requestBody.toString())
@@ -91,6 +91,8 @@ object UserInfoBindingAdapter {
                     if(res?.message == null) {
                         Toast.makeText(button.context,"성공적으로 수정되었습니다", Toast.LENGTH_SHORT).show()
                         button.findNavController().navigate(R.id.action_navigation_user_info_update_to_navigation_my_info)
+                    } else {
+                        Toast.makeText(button.context,"수정에 실패했습니다", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
