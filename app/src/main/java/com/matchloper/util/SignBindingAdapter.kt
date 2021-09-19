@@ -2,7 +2,6 @@ package com.matchloper.util
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
@@ -37,7 +36,6 @@ object SignBindingAdapter {
                     response: Response<SignInResponseData>
                 ) {
                     val res = response.body()
-                    Log.e("res",res.toString())
 
                     when {
                         res?.message.toString().contains("존재하지 않는 사용자입니다") -> Toast.makeText(button.context,"존재하지 않는 사용자입니다",Toast.LENGTH_SHORT).show()
@@ -79,7 +77,7 @@ object SignBindingAdapter {
                     response: Response<SignUpResponseData>
                 ) {
                     val res = response.body()
-                    Log.e("test",res.toString())
+
                     if(res?.message == null) {
                         Toast.makeText(button.context,"회원가입이 완료되었습니다", Toast.LENGTH_SHORT).show()
                         (button.context as Activity).finish()

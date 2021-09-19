@@ -2,7 +2,6 @@ package com.matchloper
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             val token = task.result
-            Log.e("token",token)
             viewModel.deviceToken.value = token
 
         })

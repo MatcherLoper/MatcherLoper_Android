@@ -1,7 +1,6 @@
 package com.matchloper.network
 
 import com.matchloper.data.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -1,6 +1,5 @@
 package com.matchloper.ui.matchinglist
 
-import android.util.Log
 import android.widget.RadioButton
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
@@ -45,7 +44,6 @@ class MatchingListViewModel : ViewModel() {
                 response: Response<FindRoomResponseData>
             ) {
                 val res = response.body()
-                Log.e("res",res.toString())
 
                 val data = res?.data!!
                 data.forEachIndexed { index, roomInfoData ->
@@ -81,7 +79,6 @@ class MatchingListViewModel : ViewModel() {
                 response: Response<FindRoomResponseData>
             ) {
                 val res = response.body()
-                Log.e("res",res.toString())
 
                 val data = res?.data!!
                 data.forEachIndexed { index, roomInfoData ->

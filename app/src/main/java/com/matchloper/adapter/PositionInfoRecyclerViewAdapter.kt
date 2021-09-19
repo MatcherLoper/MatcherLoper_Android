@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
-import com.matchloper.data.PositionInfoData
 import com.matchloper.data.RoomPosition
 import com.matchloper.databinding.PositionInfoLayoutBinding
 

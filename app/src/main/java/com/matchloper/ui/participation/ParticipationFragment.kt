@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.google.android.gms.tasks.OnSuccessListener
 import com.matchloper.R
 import com.matchloper.SingleTon
@@ -69,7 +67,7 @@ class ParticipationFragment : Fragment(), MatchingDialogFragment.NoticeDialogLis
                     response: Response<DefaultResponseData>
                 ) {
                     val res = response.body()
-                    Log.e("res",res.toString())
+
                     when(res?.message) {
                         null -> dialog.dismiss()
                         "There are no rooms available to participate" -> {

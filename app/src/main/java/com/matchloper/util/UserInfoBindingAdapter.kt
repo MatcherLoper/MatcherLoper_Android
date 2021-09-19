@@ -1,6 +1,5 @@
 package com.matchloper.util
 
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -74,7 +73,6 @@ object UserInfoBindingAdapter {
                 AddressDto(address.toString(),detailAddress.toString()),userIntroduction.toString(),userName.toString(),userSignUpPw.toString(),userPhone.toString(),
                 listOf(skill), listOf(position))
 
-            Log.e("test",requestBody.toString())
             RetrofitBuilder.networkService.updateUser(SingleTon.prefs.userId,requestBody).enqueue(object : Callback<DefaultResponseData> {
                 override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
 
@@ -86,14 +84,11 @@ object UserInfoBindingAdapter {
                 ) {
                     val res = response.body()
 
-                    Log.e("???",res.toString())
-
                     if(res?.message == null) {
                         Toast.makeText(button.context,"성공적으로 수정되었습니다", Toast.LENGTH_SHORT).show()
                         button.findNavController().navigate(R.id.action_navigation_user_info_update_to_navigation_my_info)
-                    } else {
-                        Toast.makeText(button.context,"수정에 실패했습니다", Toast.LENGTH_SHORT).show()
-                    }
+                    } else Toast.makeText(button.context,"수정에 실패했습니다", Toast.LENGTH_SHORT).show()
+
                 }
             })
 

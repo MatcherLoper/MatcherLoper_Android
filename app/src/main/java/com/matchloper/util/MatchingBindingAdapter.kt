@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -43,7 +42,6 @@ object MatchingBindingAdapter {
     @JvmStatic
     fun createRoom(button: Button, name : String?, possibleOfflineArea : String?, roomPositionList : ObservableArrayList<RoomPosition>, userId : Int) {
         button.setOnClickListener {
-            Log.e("room",roomPositionList.toString())
             val requestBody = RoomCreateRequestData(name.toString(),possibleOfflineArea.toString(),roomPositionList,userId)
             RetrofitBuilder.networkService.createRoom(requestBody).enqueue(object :
                 Callback<DefaultResponseData> {
@@ -56,9 +54,8 @@ object MatchingBindingAdapter {
                     response: Response<DefaultResponseData>
                 ) {
                     val res = response.body()
-                    val message = res?.message
-                    Log.e("res",res.toString())
-                    when(message) {
+
+                    when(res?.message) {
                         null -> (it.context as Activity).finish()
                         "user already have another open room" -> Toast.makeText(button.context,
                             "현재 아이디로 이미 개설된 방이 있습니다", Toast.LENGTH_SHORT).show()
@@ -95,7 +92,7 @@ object MatchingBindingAdapter {
                         response: Response<DefaultResponseData>
                     ) {
                         val res = response.body()
-                        Log.e("res",res.toString())
+
                         when(res?.message) {
                             null -> button.findNavController().navigate(R.id.action_navigation_matching_dialog_to_navigation_participation)
                             "There are no rooms available to participate" -> {
