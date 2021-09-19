@@ -1,6 +1,9 @@
 package com.matchloper
 
-import android.util.Log
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -16,15 +19,35 @@ class FirebaseMessaging : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         remoteMessage.notification?.let {
-            Log.e("Firebase", it.title)
-            Log.e("ff",it.body)
+
+            when(it.title) {
+                "방 상태 변화 감지" -> {
+
+                    val notificationBuilder = createNotificationChannel("id", "name")
+                        .setContentTitle(remoteMessage.notification?.title)
+                        .setContentText("새로운 방이 생성되었습니다")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                    with(NotificationManagerCompat.from(this)) {
+                        notify(0,notificationBuilder.build())
+                    }
+                }
+            }
         }
+    }
 
-        val notificationBuilder = NotificationCompat.Builder(this, "")
-            .setContentTitle(remoteMessage.notification?.title)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+    private fun createNotificationChannel(id :String, name :String) : NotificationCompat.Builder{
 
-        NotificationManagerCompat.from(this)
-            .notify(1,notificationBuilder.build())
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channel = NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH)
+
+            manager.createNotificationChannel(channel)
+
+            NotificationCompat.Builder(this, id)
+
+        } else NotificationCompat.Builder(this)
+
     }
 }
