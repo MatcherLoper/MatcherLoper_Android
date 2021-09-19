@@ -226,11 +226,11 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    userIntroduction="@{viewModel.userIntroduction}"
                     address="@{viewModel.userAddress}"
                     detailAddress="@{viewModel.userDetailAddress}"
                     userName="@{viewModel.userName}"
                     userEmail="@{viewModel.userEmail}"
+                    userIntroduction="@{viewModel.userIntroduction}"
                     userSignUpPw="@{viewModel.userSignUpPw}"
                     userPhone="@{viewModel.userPhoneNumber}"
                     userPosition="@{viewModel.userPosition}"

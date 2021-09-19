@@ -54,10 +54,10 @@ object SignBindingAdapter {
         }
     }
 
-    @BindingAdapter(value = ["address","detailAddress","userName","userEmail","userSignUpPw","userPhone" , "userIntroduction"
+    @BindingAdapter(value = ["address","detailAddress","userName","userEmail", "userIntroduction", "userSignUpPw","userPhone"
         ,"userPosition","userSkill"],requireAll = true)
     @JvmStatic
-    fun signUp(button: Button, address : String?, detailAddress: String?, userName : String?, userEmail : String?, userIntroduction : String?,userSignUpPw : String?,
+    fun signUp(button: Button, address : String?, detailAddress: String?, userName : String?, userEmail : String?, userIntroduction : String?, userSignUpPw : String?,
                userPhone : String?, userPosition : String?, userSkill : String?) {
         button.setOnClickListener {
             val skill = SkillDto(userSkill.toString())
