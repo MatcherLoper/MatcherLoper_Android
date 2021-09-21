@@ -226,6 +226,8 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     address="@{viewModel.userAddress}"
                     detailAddress="@{viewModel.userDetailAddress}"
                     userName="@{viewModel.userName}"
@@ -235,12 +237,20 @@
                     userPhone="@{viewModel.userPhoneNumber}"
                     userPosition="@{viewModel.userPosition}"
                     userSkill="@{viewModel.userSkillInfo}"
+                    android:background="@drawable/round_corner"
+                    android:backgroundTint="#FFA7BAE6"
+                    android:textColor="#FEFEFE"
                     android:text="확인"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/round_corner"
+                    android:backgroundTint="#FFA7BAE6"
+                    android:textColor="#FEFEFE"
                     android:text="취소"
                     android:layout_weight="1"
                     android:layout_width="match_parent"

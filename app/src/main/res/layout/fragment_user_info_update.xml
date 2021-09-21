@@ -217,12 +217,22 @@
                     userPhone="@{viewModel.userPhoneNumber}"
                     userPosition="@{viewModel.userPosition}"
                     userSkill="@{viewModel.userSkillInfo}"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/round_corner"
+                    android:backgroundTint="#FFA7BAE6"
+                    android:textColor="#FEFEFE"
                     android:text="확인"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/round_corner"
+                    android:backgroundTint="#FFA7BAE6"
+                    android:textColor="#FEFEFE"
                     cancelUpdate="@{viewModel.myInfoData.userId}"
                     android:text="취소"
                     android:layout_weight="1"
