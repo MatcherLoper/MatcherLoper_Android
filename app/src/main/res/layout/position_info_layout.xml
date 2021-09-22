@@ -32,6 +32,9 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:textColor="#FEFEFE"
+            android:backgroundTint="#FFA7BAE6"
+            android:background="@drawable/round_corner"
             android:text="삭제"
             android:id="@+id/removeButton"
             android:layout_weight="1"

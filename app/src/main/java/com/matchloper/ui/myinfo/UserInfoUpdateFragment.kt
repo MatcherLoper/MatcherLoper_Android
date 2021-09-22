@@ -28,7 +28,6 @@ class UserInfoUpdateFragment : Fragment() {
         binding.viewModel = viewModel
 
         val arg = arguments?.getParcelable<UserInfoData>("userInfo")
-        Log.e("test",arg.toString())
 
         return binding.root
     }
