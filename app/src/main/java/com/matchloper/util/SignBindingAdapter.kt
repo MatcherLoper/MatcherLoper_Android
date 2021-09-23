@@ -37,18 +37,31 @@ object SignBindingAdapter {
                 ) {
                     val res = response.body()
 
-                    when {
-                        res?.message.toString().contains("존재하지 않는 사용자입니다") -> Toast.makeText(button.context,"존재하지 않는 사용자입니다",Toast.LENGTH_SHORT).show()
-                        res?.message == "Password is not matched!" -> Toast.makeText(button.context,"비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show()
-                        res?.message == null -> {
-                            SingleTon.prefs.userId = res?.data!!.id
-                            SingleTon.prefs.userToken = res.data.authenticationToken
-
-                            val intent = Intent(it.context, MatchActivity::class.java)
-                            it.context.startActivity(intent)
-                        }
+                    if(response.code() == 400) {
+                        Toast.makeText(button.context,"로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
                     }
+                    else {
+                        when {
+                            res?.message.toString().contains("존재하지 않는 사용자입니다") -> Toast.makeText(
+                                button.context,
+                                "존재하지 않는 사용자입니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            res?.message == "Password is not matched!" -> Toast.makeText(
+                                button.context,
+                                "비밀번호가 일치하지 않습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            res?.message == null -> {
+                                SingleTon.prefs.userId = res?.data!!.id
+                                SingleTon.prefs.userToken = res.data.authenticationToken
 
+                                val intent = Intent(it.context, MatchActivity::class.java)
+                                it.context.startActivity(intent)
+                            }
+                        }
+
+                    }
                 }
             })
         }
@@ -78,9 +91,19 @@ object SignBindingAdapter {
                 ) {
                     val res = response.body()
 
-                    if(res?.message == null) {
-                        Toast.makeText(button.context,"회원가입이 완료되었습니다", Toast.LENGTH_SHORT).show()
-                        (button.context as Activity).finish()
+                    if(response.code() == 400) {
+                        Toast.makeText(button.context,"회원가입에 실패했습니다",Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        when {
+                            res?.message == null  -> {
+                                Toast.makeText(button.context, "회원가입이 완료되었습니다", Toast.LENGTH_SHORT).show()
+                                (button.context as Activity).finish()
+                            }
+                            res.message.contains("duplicated email") -> {
+                                Toast.makeText(button.context, "이미 가입된 이메일입니다", Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
                 }
             })
@@ -93,6 +116,14 @@ object SignBindingAdapter {
         button.setOnClickListener {
             val intent = Intent(button.context, SignUpActivity::class.java)
             button.context.startActivity(intent)
+        }
+    }
+
+    @BindingAdapter("signUpCancel")
+    @JvmStatic
+    fun cancelSignUp(button: Button, id: String?) {
+        button.setOnClickListener {
+            (button.context as Activity).finish()
         }
     }
 

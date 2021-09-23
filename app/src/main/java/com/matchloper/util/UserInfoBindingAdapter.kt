@@ -73,9 +73,12 @@ object UserInfoBindingAdapter {
                 AddressDto(address.toString(),detailAddress.toString()),userIntroduction.toString(),userName.toString(),userSignUpPw.toString(),userPhone.toString(),
                 listOf(skill), listOf(position))
 
+            val context = button.context
+            val errorMessage = Toast.makeText(context, "수정에 실패했습니다", Toast.LENGTH_SHORT)
+
             RetrofitBuilder.networkService.updateUser(SingleTon.prefs.userId,requestBody).enqueue(object : Callback<DefaultResponseData> {
                 override fun onFailure(call: Call<DefaultResponseData>, t: Throwable) {
-
+                    errorMessage.show()
                 }
 
                 override fun onResponse(
@@ -84,11 +87,19 @@ object UserInfoBindingAdapter {
                 ) {
                     val res = response.body()
 
-                    if(res?.message == null) {
-                        Toast.makeText(button.context,"성공적으로 수정되었습니다", Toast.LENGTH_SHORT).show()
-                        button.findNavController().navigate(R.id.action_navigation_user_info_update_to_navigation_my_info)
-                    } else Toast.makeText(button.context,"수정에 실패했습니다", Toast.LENGTH_SHORT).show()
+                    if(response.code() == 400) errorMessage.show()
 
+                    else {
+                        when (res?.message) {
+                            null -> {
+                                Toast.makeText(context, "성공적으로 수정되었습니다", Toast.LENGTH_SHORT)
+                                    .show()
+                                button.findNavController()
+                                    .navigate(R.id.action_navigation_user_info_update_to_navigation_my_info)
+                            }
+                            else -> errorMessage.show()
+                        }
+                    }
                 }
             })
 
