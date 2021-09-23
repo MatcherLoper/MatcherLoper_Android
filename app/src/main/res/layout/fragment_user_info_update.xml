@@ -127,6 +127,7 @@
                     android:text="핸드폰 번호" />
 
                 <EditText
+                    android:inputType="phone"
                     android:text="@={viewModel.userPhoneNumber}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
