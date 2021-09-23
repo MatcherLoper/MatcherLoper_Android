@@ -362,9 +362,6 @@
                 <Button
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/round_corner"
-                    android:backgroundTint="#FFA7BAE6"
-                    android:textColor="#FEFEFE"
                     leaveRoomId="@{viewModel.currentProjectInfo.roomId}"
                     leaveCreateUserId="@{viewModel.currentProjectInfo.createUserId}"
                     android:text="떠나기"
@@ -375,9 +372,6 @@
                 <Button
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/round_corner"
-                    android:backgroundTint="#FFA7BAE6"
-                    android:textColor="#FEFEFE"
                     roomStatus="@{viewModel.currentProjectInfo.status}"
                     startRoomId="@{viewModel.currentProjectInfo.roomId}"
                     android:text="시작하기"
@@ -388,9 +382,6 @@
                 <Button
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/round_corner"
-                    android:backgroundTint="#FFA7BAE6"
-                    android:textColor="#FEFEFE"
                     closeRoomId="@{viewModel.currentProjectInfo.roomId}"
                     status="@{viewModel.currentProjectInfo.status}"
                     android:text="방 닫기"
@@ -401,9 +392,6 @@
                 <Button
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/round_corner"
-                    android:backgroundTint="#FFA7BAE6"
-                    android:textColor="#FEFEFE"
                     deleteRoomId="@{viewModel.currentProjectInfo.roomId}"
                     deleteCreateUserId="@{viewModel.currentProjectInfo.createUserId}"
                     android:text="삭제하기"
