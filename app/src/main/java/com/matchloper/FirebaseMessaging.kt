@@ -24,6 +24,7 @@ class FirebaseMessaging : FirebaseMessagingService() {
                 "방 상태 변화 감지" -> {
 
                     val notificationBuilder = createNotificationChannel("id", "name")
+                        .setSmallIcon(android.R.drawable.ic_menu_search)
                         .setContentTitle(remoteMessage.notification?.title)
                         .setContentText("새로운 방이 생성되었습니다")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
