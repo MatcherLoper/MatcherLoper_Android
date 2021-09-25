@@ -69,7 +69,7 @@ class ParticipationFragment : Fragment(), MatchingDialogFragment.NoticeDialogLis
                     val res = response.body()
 
                     when(res?.message) {
-                        null -> dialog.dismiss()
+                        null -> Toast.makeText(dialog.context,"새로운 프로젝트에 참가했습니다",Toast.LENGTH_SHORT).show()
                         "There are no rooms available to participate" -> {
                             Toast.makeText(dialog.context,"참여할 수 있는 방이 없습니다", Toast.LENGTH_SHORT).show()
                             val notificationChannel = NotificationChannel("10000","test",
