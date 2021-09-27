@@ -51,7 +51,7 @@
                 android:background="@drawable/round_corner"
                 android:backgroundTint="#FFA7BAE6"
                 android:textColor="#FEFEFE"
-                joinRoom="@{viewModel.position}"
+                android:id="@+id/matchingConfirm"
                 android:text="확인"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
