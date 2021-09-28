@@ -46,9 +46,9 @@ object UserInfoBindingAdapter {
 
     @BindingAdapter("update")
     @JvmStatic
-    fun infoUpdate(button: Button, userInfo : UserInfoData?) {
+    fun infoUpdate(button: Button, userId : Int) {
         button.setOnClickListener {
-            button.findNavController().navigate(R.id.action_navigation_my_info_to_navigation_user_info_update, bundleOf("userInfo" to userInfo))
+            button.findNavController().navigate(R.id.action_navigation_my_info_to_navigation_user_info_update)
         }
     }
 
@@ -60,11 +60,11 @@ object UserInfoBindingAdapter {
         }
     }
 
-    @BindingAdapter(value = ["address","detailAddress","userName","userSignUpPw","userPhone" , "userIntroduction"
-        ,"userPosition","userSkill"],requireAll = true)
+    @BindingAdapter(value = ["address","detailAddress", "userIntroduction","userName","userSignUpPw","userPhone"
+        ,"userSkill","userPosition"],requireAll = true)
     @JvmStatic
-    fun infoUpdate(button: Button, address : String?, detailAddress: String?, userName : String?, userIntroduction : String? ,userSignUpPw : String?,
-                   userPhone : String?, userPosition : String?, userSkill : String?) {
+    fun infoUpdate(button: Button, address : String?, detailAddress: String?, userIntroduction : String? ,userName : String?, userSignUpPw : String?,
+                   userPhone : String?, userSkill : String?, userPosition : String?) {
 
         button.setOnClickListener {
             val skill = SkillDto(userSkill.toString())

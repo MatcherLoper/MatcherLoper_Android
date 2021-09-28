@@ -1,10 +1,8 @@
 package com.matchloper.view
 
-import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +12,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +26,6 @@ import com.matchloper.ui.participation.ParticipationViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.ClassCastException
 
 class MatchingDialogFragment : DialogFragment() {
 
@@ -65,7 +61,7 @@ class MatchingDialogFragment : DialogFragment() {
         binding.viewModel = viewModel
 
         binding.matchingConfirm.setOnClickListener {
-            testConfirm()
+            matchingConfirm()
         }
 
         binding.matchingCancel.setOnClickListener {
@@ -75,7 +71,7 @@ class MatchingDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    private fun testConfirm() {
+    private fun matchingConfirm() {
         if(viewModel.position.value != "") {
             val requestBody = RequestPositionData(viewModel.position.value.toString())
             RetrofitBuilder.networkService.joinRoom(requestBody, SingleTon.prefs.userId).enqueue(object :

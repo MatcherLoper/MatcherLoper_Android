@@ -210,14 +210,14 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    userIntroduction="@{viewModel.userIntroduction}"
-                    userName="@{viewModel.userName}"
                     address="@{viewModel.userAddress}"
                     detailAddress="@{viewModel.userDetailAddress}"
+                    userIntroduction="@{viewModel.userIntroduction}"
+                    userName="@{viewModel.userName}"
                     userSignUpPw="@{viewModel.userUpdatePw}"
                     userPhone="@{viewModel.userPhoneNumber}"
-                    userPosition="@{viewModel.userPosition}"
                     userSkill="@{viewModel.userSkillInfo}"
+                    userPosition="@{viewModel.userPosition}"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/round_corner"

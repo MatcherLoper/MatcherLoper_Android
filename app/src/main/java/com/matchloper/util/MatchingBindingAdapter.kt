@@ -1,22 +1,12 @@
 package com.matchloper.util
 
 import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
-import androidx.navigation.findNavController
-import com.google.android.gms.tasks.OnSuccessListener
-import com.matchloper.R
-import com.matchloper.SingleTon
 import com.matchloper.data.DefaultResponseData
-import com.matchloper.data.RequestPositionData
 import com.matchloper.data.RoomCreateRequestData
 import com.matchloper.data.RoomPosition
 import com.matchloper.network.RetrofitBuilder
