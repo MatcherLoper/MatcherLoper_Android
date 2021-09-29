@@ -55,6 +55,8 @@ class MatchingDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        isCancelable = false
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_matching_dialog,container,false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this.requireActivity()).get(ParticipationViewModel::class.java)
