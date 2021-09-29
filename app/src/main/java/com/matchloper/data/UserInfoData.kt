@@ -7,6 +7,6 @@ data class UserInfoData(
     val name : String,
     val phoneNumber : String,
     val introduction : String,
-    val userPosition : List<UserPositionDto>,
+    val userPositions : List<UserPositionDto>,
     val skills : List<SkillDto>
 )

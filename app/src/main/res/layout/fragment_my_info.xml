@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text=""
+                    android:text="@{viewModel.myInfoData.userPositions.get(0).type}"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text=""
+                    android:text="@{viewModel.myInfoData.skills.get(0).name}"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
