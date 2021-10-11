@@ -33,6 +33,7 @@
 - Firebase Messaging
 - databinding
 - viewmodel 2.3.1
+- LiveData
 
 </br >
 
